@@ -5,13 +5,17 @@ dotenv.config()
 const dbConnect = require('./config/dbConnect')
 const app = express()
 const port = process.env.PORT
-
+const userRouter = require('./routes/userRoutes')
 // middleware 
 app.use(express.json())
 app.use(cors())
 
 // db
 dbConnect()
+
+// routes middleware
+
+app.use('/api',userRouter)
 
 app.get('/',(req,res)=>{
     res.send('Mongoose 04 running.....')
